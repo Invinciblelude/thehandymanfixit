@@ -111,7 +111,7 @@
       @media (min-width: 900px) {
         .site-nav-inner {
           display: grid;
-          grid-template-columns: repeat(6, minmax(0, 1fr));
+          grid-template-columns: repeat(5, minmax(0, 1fr));
           gap: 0.35rem;
           overflow-x: visible;
           padding-top: 0.5rem;
@@ -333,67 +333,6 @@
         color: var(--hero-dark);
         background: var(--surface-2);
         width: 24%;
-      }
-      .slider-wrap {
-        margin-top: 0.5rem;
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid var(--border-wood);
-        background: #111;
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-        aspect-ratio: 2 / 1;
-        min-height: clamp(168px, 42vw, 220px);
-        max-height: min(52vh, 520px);
-      }
-      .slider-wrap .ph {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .slider-wrap .ph-before {
-        background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
-      }
-      .slider-wrap .ph-after {
-        background: linear-gradient(135deg, #6b9080 0%, var(--green-d) 100%);
-        clip-path: inset(0 0 0 50%);
-        -webkit-clip-path: inset(0 0 0 50%);
-      }
-      .slider-wrap input[type="range"] {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        min-height: 2.75rem;
-        margin: 0.5rem 0 0;
-        cursor: pointer;
-        touch-action: manipulation;
-      }
-      .slider-divider {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        width: 3px;
-        background: #fff;
-        z-index: 2;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-        pointer-events: none;
-      }
-      .slider-labels {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.72rem;
-        font-weight: 700;
-        color: #fff;
-        position: absolute;
-        bottom: 0.45rem;
-        left: 0.55rem;
-        right: 0.55rem;
-        z-index: 2;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-        pointer-events: none;
       }
       /* —— Emergency: two compact lines, high contrast —— */
       .emergency {
@@ -927,7 +866,6 @@
         <a href="#walkthrough">$500 walkthrough</a>
         <a href="#services">Services</a>
         <a href="#how-it-works">How I work</a>
-        <a href="#gallery">Before / after</a>
         <a href="#area">Service area</a>
       </div>
     </nav>
@@ -1042,23 +980,6 @@
         </div>
       </section>
 
-      <section id="gallery" class="section-block alt">
-        <div class="shell">
-        <h2>Before &amp; after</h2>
-        <p class="lead">Placeholder slider — replace gradients with your real job photos.</p>
-        <div class="slider-wrap" id="ba-slider" aria-label="Before and after comparison">
-          <div class="ph ph-before" aria-hidden="true"></div>
-          <div class="ph ph-after" id="after-layer" aria-hidden="true"></div>
-          <div class="slider-divider" id="divider"></div>
-          <div class="slider-labels"><span>Before</span><span>After</span></div>
-        </div>
-        <label for="ba-range" class="lead" style="display: block; margin-top: 0.35rem; font-size: 0.85rem"
-          ><strong>Drag</strong> to compare</label
-        >
-        <input type="range" id="ba-range" min="0" max="100" value="50" aria-label="Reveal before and after" />
-        </div>
-      </section>
-
       <section id="area" class="section-block">
         <div class="shell">
         <h2>Service area</h2>
@@ -1142,24 +1063,6 @@
               window.location.href = href;
             });
           });
-        }
-
-        var baRange = document.getElementById("ba-range");
-        var afterLayer = document.getElementById("after-layer");
-        var dividerEl = document.getElementById("divider");
-        if (baRange && afterLayer && dividerEl) {
-          function setBaPos(pct) {
-            var clip = "inset(0 0 0 " + pct + "%)";
-            afterLayer.style.clipPath = clip;
-            afterLayer.style.setProperty("-webkit-clip-path", clip);
-            dividerEl.style.left = pct + "%";
-          }
-          function onBaRange() {
-            setBaPos(Number(baRange.value));
-          }
-          baRange.addEventListener("input", onBaRange);
-          baRange.addEventListener("change", onBaRange);
-          setBaPos(50);
         }
       })();
     </script>
