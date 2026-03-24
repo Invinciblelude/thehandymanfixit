@@ -802,6 +802,25 @@
       .form-status-err {
         color: var(--danger);
       }
+      .dev-test-banner {
+        display: none;
+        background: #1a1816;
+        color: #f0e8d8;
+        padding: 0.55rem max(var(--pad-inline), 1rem);
+        font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+        line-height: 1.45;
+        text-align: center;
+        border-bottom: 2px solid var(--accent-gold);
+      }
+      .dev-test-banner.is-visible {
+        display: block;
+      }
+      .dev-test-banner code {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.12em 0.35em;
+        border-radius: 4px;
+        font-size: 0.95em;
+      }
     </style>
   </head>
   <body
@@ -809,6 +828,7 @@
     data-email="redprelude@gmail.com"
     data-formspree="https://formspree.io/f/xzdkppwj"
   >
+    <div id="dev-test-banner" class="dev-test-banner" role="status" aria-live="polite"></div>
     <div class="emergency" role="alert">
       <div class="emergency-inner">
         <p class="emergency-line1">
@@ -1025,6 +1045,30 @@
 
     <script>
       (function () {
+        var devBanner = document.getElementById("dev-test-banner");
+        if (devBanner) {
+          if (location.protocol === "file:") {
+            devBanner.classList.add("is-visible");
+            devBanner.innerHTML =
+              "Opened as a local file — Email (Formspree) often fails from <code>file://</code>. In this folder run <code>npm run serve</code> then open <code>http://localhost:8765</code>.";
+          } else if (/^(127\.0\.0\.1|localhost)$/.test(location.hostname)) {
+            devBanner.classList.add("is-visible");
+            devBanner.appendChild(
+              document.createTextNode(
+                "Local test — if Email returns an error, add "
+              )
+            );
+            var o = document.createElement("strong");
+            o.textContent = location.origin;
+            devBanner.appendChild(o);
+            devBanner.appendChild(
+              document.createTextNode(
+                " to this form’s allowed domains in Formspree (Form settings)."
+              )
+            );
+          }
+        }
+
         var PHONE = (document.body.getAttribute("data-phone") || "+19166342083").replace(/\s/g, "");
         var telHref = "tel:" + PHONE;
         document.getElementById("emergency-tel").href = telHref;
@@ -1095,6 +1139,7 @@
                 },
                 body: JSON.stringify({
                   _subject: "Handyman request — thehandymanfixit.com",
+                  _redirect: false,
                   message: buildBody(),
                   phone: (phoneEl.value || "").trim(),
                   name: (nameEl.value || "").trim(),
