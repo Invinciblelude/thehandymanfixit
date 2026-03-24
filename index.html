@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>The Handyman Fix It | Sacramento area</title>
+    <meta
+      name="description"
+      content="Sacramento area handyman — describe your problem, text or call Vince. Emergency? Call now."
+    />
+    <meta name="theme-color" content="#2a2623" />
+    <link rel="preload" as="image" href="images/hero-bg.jpg" />
+    <style>
+      :root {
+        --bg: #e5e1d9;
+        --bg-warm: #ebe7df;
+        --surface: #fffefb;
+        --surface-2: #faf7f2;
+        --ink: #141312;
+        --muted: #5e5a55;
+        --green: #1d6f4d;
+        --green-d: #145a3c;
+        --green-soft: rgba(29, 111, 77, 0.12);
+        --danger: #8b1c1c;
+        --danger-d: #6f1515;
+        --radius: 14px;
+        --hero-dark: #2a2623;
+        --hero-mid: #3d3632;
+        --accent-gold: #c4a035;
+        --accent-gold-d: #9a7b28;
+        --border-wood: #c9c0b4;
+        --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        --tap-min: 48px;
+        --tap-nav: 44px;
+        --pad-inline: max(1rem, env(safe-area-inset-left));
+        --pad-inline-end: max(1rem, env(safe-area-inset-right));
+        --section-pad-y: clamp(1rem, 3.2vw, 1.45rem);
+        --panel-pad: clamp(0.85rem, 3.5vw, 1.2rem);
+        --sticky-nav-clear: max(3.5rem, calc(2.75rem + env(safe-area-inset-top)));
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+        overflow-x: clip;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font);
+        font-size: clamp(1rem, 0.2vw + 0.94rem, 1.0625rem);
+        line-height: 1.5;
+        color: var(--ink);
+        background: var(--bg-warm);
+        overflow-x: clip;
+      }
+      @media (min-width: 900px) {
+        body {
+          font-size: clamp(1.03rem, 0.15vw + 0.98rem, 1.1rem);
+          line-height: 1.52;
+        }
+      }
+      img,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      ::selection {
+        background: var(--green-soft);
+        color: var(--ink);
+      }
+      .section-block a {
+        color: var(--green-d);
+        font-weight: 600;
+      }
+      .section-block a:hover {
+        color: var(--green);
+      }
+      /* Desktop-first shell: uses full width on phones, ~1180px on large screens */
+      .shell {
+        width: 100%;
+        max-width: min(1200px, 100%);
+        margin-inline: auto;
+        padding-left: max(var(--pad-inline), min(1.35rem, 5vw));
+        padding-right: max(var(--pad-inline-end), min(1.35rem, 5vw));
+      }
+      /* —— Sticky section menu —— */
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border-wood);
+      }
+      .site-nav-inner {
+        display: flex;
+        gap: 0.3rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x proximity;
+        padding: 0.4rem 0;
+        scrollbar-width: thin;
+        width: 100%;
+        max-width: min(1200px, 100%);
+        margin-inline: auto;
+        padding-left: max(var(--pad-inline), min(1.35rem, 5vw));
+        padding-right: max(var(--pad-inline-end), min(1.35rem, 5vw));
+      }
+      @media (min-width: 900px) {
+        .site-nav-inner {
+          display: grid;
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+          gap: 0.35rem;
+          overflow-x: visible;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+        }
+        .site-nav a {
+          font-size: 0.68rem;
+          padding: 0.55rem 0.3rem;
+          justify-content: center;
+          width: 100%;
+          white-space: normal;
+          text-align: center;
+          line-height: 1.2;
+        }
+      }
+      .site-nav-inner::-webkit-scrollbar {
+        height: 4px;
+      }
+      .site-nav-inner::-webkit-scrollbar-thumb {
+        background: var(--border-wood);
+        border-radius: 4px;
+      }
+      .site-nav a {
+        flex-shrink: 0;
+        padding: 0.55rem 0.8rem;
+        min-height: var(--tap-nav);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: clamp(0.68rem, 2.5vw, 0.74rem);
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--green-d);
+        text-decoration: none;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        touch-action: manipulation;
+        scroll-snap-align: start;
+      }
+      .site-nav a:hover,
+      .site-nav a:focus-visible {
+        background: var(--green-soft);
+        border-color: var(--border-wood);
+        outline: none;
+      }
+      /* —— Detail sections —— */
+      .section-block {
+        padding: var(--section-pad-y) 0 calc(var(--section-pad-y) + 0.1rem);
+        scroll-margin-top: var(--sticky-nav-clear);
+      }
+      .section-block.alt {
+        background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+        border-block: 1px solid var(--border-wood);
+      }
+      .section-block h2 {
+        font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+        margin: 0 0 0.4rem;
+        color: var(--hero-dark);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .section-block h2::after {
+        content: "";
+        display: block;
+        width: 2.75rem;
+        height: 3px;
+        margin-top: 0.3rem;
+        background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-d));
+        border-radius: 2px;
+      }
+      .section-block .lead {
+        color: var(--muted);
+        margin: 0 0 0.55rem;
+        line-height: 1.45;
+        font-size: clamp(0.9rem, 2.2vw, 0.98rem);
+        max-width: none;
+      }
+      .walkthrough-card {
+        background: linear-gradient(165deg, var(--hero-mid) 0%, var(--hero-dark) 100%);
+        color: #f5f2eb;
+        border-radius: var(--radius);
+        padding: 0.95rem 0.95rem 1rem;
+        border: 1px solid rgba(196, 160, 53, 0.35);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+        margin-top: 0.55rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .walkthrough-card .price {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--accent-gold);
+        margin: 0.15rem 0 0.35rem;
+        line-height: 1;
+      }
+      .walkthrough-card p {
+        margin: 0 0 0.5rem;
+        color: rgba(245, 242, 235, 0.88);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .walkthrough-card ul {
+        margin: 0.35rem 0 0;
+        padding-left: 1.15rem;
+        color: rgba(245, 242, 235, 0.82);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      .walkthrough-card li {
+        margin-bottom: 0.35rem;
+      }
+      .service-grid {
+        display: grid;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      @media (min-width: 540px) {
+        .service-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 820px) {
+        .service-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .service-card {
+        background: var(--surface);
+        border: 1px solid var(--border-wood);
+        border-top: 3px solid var(--accent-gold);
+        border-radius: var(--radius);
+        padding: 0.85rem 0.85rem;
+        box-shadow: 0 2px 10px rgba(42, 38, 35, 0.05);
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .service-card h3 {
+        margin: 0 0 0.4rem;
+        font-size: 0.92rem;
+        color: var(--green-d);
+      }
+      .service-card p {
+        margin: 0;
+        font-size: 0.84rem;
+        color: var(--muted);
+        line-height: 1.45;
+        flex: 1;
+      }
+      .pillars {
+        display: grid;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      @media (min-width: 700px) {
+        .pillars {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .pillar {
+        background: var(--surface);
+        border: 1px solid var(--border-wood);
+        border-top: 3px solid var(--accent-gold);
+        border-radius: var(--radius);
+        padding: 0.85rem 0.85rem;
+        box-shadow: 0 2px 10px rgba(42, 38, 35, 0.05);
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .pillar h3 {
+        margin: 0 0 0.45rem;
+        font-size: 0.92rem;
+        color: var(--green-d);
+      }
+      .pillar p {
+        margin: 0;
+        font-size: 0.84rem;
+        color: var(--muted);
+        line-height: 1.45;
+        flex: 1;
+      }
+      .compare-scroll {
+        margin-top: 0.5rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        border-radius: var(--radius);
+        box-shadow: 0 2px 12px rgba(42, 38, 35, 0.06);
+      }
+      .compare-scroll .compare {
+        margin-top: 0;
+      }
+      .compare {
+        width: 100%;
+        min-width: 500px;
+        border-collapse: collapse;
+        font-size: clamp(0.78rem, 2.1vw, 0.88rem);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: none;
+      }
+      .compare th,
+      .compare td {
+        border: 1px solid var(--border-wood);
+        padding: 0.45rem 0.5rem;
+        text-align: left;
+        vertical-align: top;
+      }
+      .compare th {
+        background: linear-gradient(180deg, var(--green-d) 0%, #0f3d29 100%);
+        color: #fff;
+        font-weight: 700;
+      }
+      .compare td:first-child {
+        font-weight: 700;
+        color: var(--hero-dark);
+        background: var(--surface-2);
+        width: 24%;
+      }
+      .slider-wrap {
+        margin-top: 0.5rem;
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--border-wood);
+        background: #111;
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 2 / 1;
+        min-height: clamp(168px, 42vw, 220px);
+        max-height: min(52vh, 520px);
+      }
+      .slider-wrap .ph {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .slider-wrap .ph-before {
+        background: linear-gradient(135deg, #4a4a4a 0%, #2a2a2a 100%);
+      }
+      .slider-wrap .ph-after {
+        background: linear-gradient(135deg, #6b9080 0%, var(--green-d) 100%);
+        clip-path: inset(0 0 0 50%);
+        -webkit-clip-path: inset(0 0 0 50%);
+      }
+      .slider-wrap input[type="range"] {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-height: 2.75rem;
+        margin: 0.5rem 0 0;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      .slider-divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 3px;
+        background: #fff;
+        z-index: 2;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+      }
+      .slider-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #fff;
+        position: absolute;
+        bottom: 0.45rem;
+        left: 0.55rem;
+        right: 0.55rem;
+        z-index: 2;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+        pointer-events: none;
+      }
+      /* —— Emergency: two compact lines, high contrast —— */
+      .emergency {
+        background: linear-gradient(180deg, var(--danger) 0%, var(--danger-d) 100%);
+        border-bottom: 3px solid var(--accent-gold);
+        color: #fff;
+        padding: 0.4rem max(1rem, env(safe-area-inset-left)) 0.45rem max(1rem, env(safe-area-inset-right));
+        padding-top: max(0.4rem, env(safe-area-inset-top));
+        text-align: center;
+      }
+      .emergency-inner {
+        max-width: min(46rem, 100%);
+        margin: 0 auto;
+      }
+      .emergency-line1 {
+        margin: 0;
+        font-size: clamp(0.88rem, 2.4vw + 0.2rem, 1.06rem);
+        line-height: 1.3;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+      .emergency-line1 .emergency-lead {
+        font-weight: 800;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      }
+      .emergency-line1 .emergency-detail {
+        font-weight: 600;
+        opacity: 0.96;
+      }
+      .emergency-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.2rem;
+        padding: 0.38rem 0.95rem;
+        min-height: var(--tap-nav);
+        background: linear-gradient(180deg, #e8c84a 0%, var(--accent-gold) 35%, var(--accent-gold-d) 100%);
+        color: #1a1512;
+        font-weight: 800;
+        font-size: clamp(0.85rem, 2.2vw, 0.98rem);
+        text-decoration: none;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 252, 240, 0.45);
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.22), 0 4px 12px rgba(0, 0, 0, 0.2);
+        vertical-align: middle;
+        white-space: nowrap;
+        touch-action: manipulation;
+      }
+      .emergency-cta:hover {
+        filter: brightness(1.07);
+        color: #1a1512;
+      }
+      .emergency-cta:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+      }
+      .emergency-line2 {
+        margin: 0.2rem 0 0;
+        font-size: clamp(0.72rem, 2vw, 0.8rem);
+        line-height: 1.35;
+        font-weight: 600;
+        opacity: 0.9;
+        letter-spacing: 0.02em;
+      }
+      .emergency-line2 .emergency-911 {
+        font-weight: 900;
+        font-size: 1.08em;
+        color: #fff;
+        letter-spacing: 0.06em;
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+      }
+      /* —— Hero: work photo + overlay —— */
+      .hero-theme {
+        position: relative;
+        overflow: hidden;
+        background-color: var(--hero-dark);
+        background-image: linear-gradient(
+            95deg,
+            rgba(18, 16, 14, 0.78) 0%,
+            rgba(18, 16, 14, 0.5) 42%,
+            rgba(18, 16, 14, 0.12) 58%,
+            rgba(18, 16, 14, 0.08) 100%
+          ),
+          url("images/hero-bg.jpg");
+        background-size: cover;
+        background-position: 56% 36%;
+        background-repeat: no-repeat;
+        color: #f5f2eb;
+        padding: clamp(0.55rem, 2.2vw, 0.75rem) 0 clamp(0.85rem, 3vw, 1.05rem);
+        display: flex;
+        flex-direction: column;
+        scroll-margin-top: var(--sticky-nav-clear);
+      }
+      @media (max-width: 599px) {
+        .hero-theme {
+          background-position: 60% 32%;
+        }
+      }
+      @media (min-width: 480px) {
+        .hero-theme {
+          padding: clamp(0.7rem, 2vw, 0.85rem) 0 clamp(0.95rem, 2.8vw, 1.15rem);
+          background-position: 54% 34%;
+        }
+      }
+      @media (min-width: 900px) {
+        .hero-theme {
+          background-position: 52% 32%;
+          padding-bottom: clamp(1.1rem, 2.5vw, 1.35rem);
+        }
+      }
+      .hero-theme::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 70% 90% at 88% 40%, transparent 0%, rgba(0, 0, 0, 0.22) 100%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+      }
+      @media (min-width: 900px) {
+        .hero-inner {
+          display: grid;
+          grid-template-columns: minmax(280px, min(430px, 36vw)) minmax(0, 1fr);
+          column-gap: clamp(1.1rem, 3.5vw, 2.5rem);
+          align-items: start;
+        }
+        .hero-top {
+          grid-column: 1 / -1;
+        }
+        .hero-contact-panel {
+          grid-column: 1;
+        }
+      }
+      .hero-contact-panel {
+        margin-top: clamp(0.5rem, 2vw, 0.75rem);
+        width: 100%;
+        max-width: min(100%, 34rem);
+      }
+      @media (min-width: 900px) {
+        .hero-contact-panel {
+          margin-top: 0.35rem;
+          max-width: none;
+        }
+      }
+      /* One professional panel: copy + form; keeps portrait clear on the right */
+      .hero-pro-panel {
+        background: rgba(255, 254, 251, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(201, 192, 180, 0.65);
+        border-radius: clamp(12px, 3vw, 16px);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2), 0 2px 0 rgba(255, 255, 255, 0.85) inset;
+        padding: var(--panel-pad);
+        color: var(--ink);
+      }
+      .hero-pro-panel .contact-intro .page-title {
+        color: var(--hero-dark);
+        text-shadow: none;
+      }
+      .hero-pro-panel .contact-intro .sub {
+        color: var(--muted);
+        text-shadow: none;
+      }
+      .hero-pro-panel .contact-intro .sub strong {
+        color: var(--ink);
+      }
+      .hero-pro-panel .contact-intro .kicker {
+        color: var(--green-d);
+        text-align: left;
+      }
+      .hero-pro-panel .contact-intro .kicker::before {
+        display: inline-block;
+      }
+      .hero-pro-panel .contact-intro .kicker::after {
+        display: none;
+      }
+      .hero-form-block {
+        margin-top: 0.85rem;
+        padding-top: 0.9rem;
+        border-top: 1px solid var(--border-wood);
+      }
+      .hero-pro-panel .contact-intro .sub:last-of-type {
+        margin-bottom: 0;
+      }
+      .hero-pro-panel .card {
+        margin: 0;
+        box-shadow: 0 2px 14px rgba(42, 38, 35, 0.06);
+        border-top-width: 3px;
+      }
+      .hero-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.65rem 0.85rem;
+        flex-wrap: wrap;
+      }
+      .hero-top .btn-call {
+        flex-shrink: 0;
+      }
+      .brand-hero {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-weight: 800;
+        font-size: clamp(1.05rem, 4.2vw, 1.45rem);
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 0, 0, 0.35);
+        line-height: 1.2;
+      }
+      @media (min-width: 900px) {
+        .brand-hero {
+          font-size: clamp(1.5rem, 2.4vw, 2rem);
+        }
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.7rem 1.15rem;
+        min-height: var(--tap-min);
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        touch-action: manipulation;
+      }
+      .btn-call {
+        background: linear-gradient(180deg, var(--green) 0%, var(--green-d) 100%);
+        color: #fff;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2), 0 3px 12px rgba(29, 111, 77, 0.3);
+      }
+      .btn-call:hover {
+        filter: brightness(1.06);
+      }
+      .btn-call:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+      }
+      /* —— Main content —— */
+      main {
+        padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+      }
+      @media (min-width: 900px) {
+        .contact-intro .sub {
+          max-width: none;
+        }
+        .walkthrough-layout {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.85rem 1.25rem;
+          align-items: stretch;
+        }
+        .walkthrough-copy {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 100%;
+        }
+        .walkthrough-layout .walkthrough-card {
+          margin-top: 0;
+          min-height: 100%;
+        }
+      }
+      .contact-intro .page-title {
+        font-size: clamp(1.28rem, 5vw + 0.4rem, 2.15rem);
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        margin: 0 0 0.35rem;
+        text-wrap: balance;
+      }
+      .contact-intro .sub {
+        margin-bottom: 0.55rem;
+      }
+      .contact-intro .sub:last-of-type {
+        margin-bottom: 0.65rem;
+      }
+      .contact-sub-tight {
+        margin-top: 0.35rem;
+      }
+      .services-footnote {
+        margin-top: 0.75rem;
+        margin-bottom: 0;
+      }
+      .kicker {
+        margin: 0 0 0.35rem;
+        font-size: clamp(0.72rem, 2.4vw, 0.8rem);
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green-d);
+      }
+      .kicker::before {
+        content: "";
+        display: inline-block;
+        width: 1.75rem;
+        height: 2px;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-d));
+        border-radius: 1px;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 1.1rem;
+        font-size: clamp(0.92rem, 2.8vw, 0.98rem);
+        line-height: 1.5;
+      }
+      .card {
+        background: linear-gradient(165deg, var(--surface) 0%, var(--surface-2) 100%);
+        border: 1px solid var(--border-wood);
+        border-top: 3px solid var(--accent-gold);
+        border-radius: var(--radius);
+        padding: clamp(0.75rem, 2.8vw, 0.95rem) clamp(0.8rem, 3vw, 1rem);
+        box-shadow: 0 4px 20px rgba(42, 38, 35, 0.08);
+        max-width: 100%;
+      }
+      label {
+        display: block;
+        font-weight: 700;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--green-d);
+        margin-bottom: 0.35rem;
+      }
+      input,
+      textarea {
+        width: 100%;
+        max-width: 100%;
+        font: inherit;
+        padding: 0.75rem 0.8rem;
+        border: 1px solid var(--border-wood);
+        border-radius: 10px;
+        margin-bottom: 0.65rem;
+        min-height: 0;
+        background: var(--surface);
+        color: var(--ink);
+      }
+      textarea {
+        min-height: clamp(88px, 22vw, 112px);
+        resize: vertical;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      input {
+        min-height: var(--tap-min);
+      }
+      input:focus,
+      textarea:focus {
+        outline: 2px solid var(--green);
+        outline-offset: 1px;
+        border-color: var(--green);
+      }
+      .btn-text {
+        width: 100%;
+        background: linear-gradient(180deg, var(--green) 0%, var(--green-d) 100%);
+        color: #fff;
+        padding: 0.95rem 1.2rem;
+        min-height: var(--tap-min);
+        font-size: 1.02rem;
+        margin-top: 0.45rem;
+        box-shadow: 0 2px 0 rgba(0, 0, 0, 0.15), 0 3px 12px rgba(29, 111, 77, 0.25);
+      }
+      .btn-text:hover {
+        filter: brightness(1.05);
+      }
+      .btn-outline {
+        width: 100%;
+        background: var(--surface);
+        color: var(--ink);
+        border: 2px solid var(--border-wood);
+        margin-top: 0.5rem;
+        padding: 0.9rem 1.2rem;
+        min-height: var(--tap-min);
+        text-decoration: none;
+      }
+      .btn-outline:hover {
+        border-color: var(--hero-mid);
+        background: var(--surface-2);
+      }
+      .btn-email {
+        width: 100%;
+        background: var(--surface);
+        color: var(--hero-dark);
+        border: 2px solid var(--accent-gold-d);
+        margin-top: 0.5rem;
+        padding: 0.9rem 1.2rem;
+        min-height: var(--tap-min);
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 1.02rem;
+        border-radius: 999px;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      .btn-email:hover {
+        border-color: var(--accent-gold);
+        background: rgba(196, 160, 53, 0.08);
+      }
+      .hint {
+        font-size: clamp(0.78rem, 2.4vw, 0.85rem);
+        color: var(--muted);
+        margin: 0.55rem 0 0;
+        line-height: 1.45;
+      }
+      .hint code {
+        font-size: 0.85em;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+      footer {
+        margin-top: 0;
+        padding: 1rem max(1rem, env(safe-area-inset-left)) max(1.25rem, env(safe-area-inset-bottom))
+          max(1rem, env(safe-area-inset-right));
+        font-size: clamp(0.72rem, 2.3vw, 0.78rem);
+        color: rgba(245, 242, 235, 0.78);
+        line-height: 1.5;
+        text-align: center;
+        background: linear-gradient(180deg, var(--hero-mid) 0%, var(--hero-dark) 55%, #1a1816 100%);
+        border-top: 3px solid var(--accent-gold);
+      }
+      footer a {
+        color: var(--accent-gold);
+        font-weight: 600;
+      }
+      footer a:hover {
+        color: #e4c86a;
+      }
+      footer strong {
+        color: #fff;
+      }
+      .err {
+        color: var(--danger);
+        font-size: 0.88rem;
+        margin: 0.35rem 0 0;
+        display: none;
+      }
+      .err.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body data-phone="+19166342083" data-email="VinceDang@thenetwork20.com">
+    <div class="emergency" role="alert">
+      <div class="emergency-inner">
+        <p class="emergency-line1">
+          <span class="emergency-lead">Urgent home issue?</span>
+          <span class="emergency-detail"> Flood, sparks, or no heat in a freeze —</span>
+          <a class="emergency-cta" id="emergency-tel" href="tel:+19166342083">Call Vince now</a>
+        </p>
+        <p class="emergency-line2">
+          Life-threatening — fire, gas, or medical: <span class="emergency-911">911</span> first.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-theme" id="contact">
+      <div class="shell hero-inner">
+        <div class="hero-top">
+          <a class="brand-hero" href="#contact">The Handyman Fix It</a>
+          <a class="btn btn-call" id="header-tel" href="tel:+19166342083">Call</a>
+        </div>
+        <div class="hero-contact-panel">
+          <div class="hero-pro-panel">
+            <div class="contact-intro">
+              <p class="kicker">Sacramento area · owner-operator</p>
+              <h1 class="page-title">What do you need fixed?</h1>
+              <p class="sub">
+                I’m Vince — <strong>I do the handyman work myself</strong> (no crew, no sending someone else). I come from
+                <strong>business development and tech</strong>, so I treat this like an operator:
+                <strong>quick replies</strong>, clear scope, no runaround.
+              </p>
+              <p class="sub contact-sub-tight">
+                Use the form → <strong>text</strong> or <strong>email</strong> (opens Messages or Mail — or Outlook /
+                Gmail on desktop). Or <strong>call</strong>. Use the menu below for services, the $500 walkthrough, and
+                more.
+              </p>
+            </div>
+            <div class="hero-form-block">
+              <div class="card">
+                  <label for="problem">Your problem (add photos after text or email opens)</label>
+                  <textarea
+                    id="problem"
+                    name="problem"
+                    placeholder="Example: Back door won’t latch. Garbage disposal hums. Need TV mounted in living room."
+                    autocomplete="off"
+                  ></textarea>
+
+                  <label for="phone">Your phone (so I can call back)</label>
+                  <input id="phone" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="916-634-2083" />
+
+                  <label for="name">Name (optional)</label>
+                  <input id="name" type="text" name="name" autocomplete="name" placeholder="I'll see this in your text" />
+
+                  <p id="form-err" class="err">Add a short description or your phone so I know how to reach you.</p>
+
+                  <button type="button" class="btn btn-text" id="btn-text">Text Vince</button>
+                  <button type="button" class="btn-email" id="btn-email">Email Vince</button>
+                  <a class="btn btn-outline" id="main-tel" href="tel:+19166342083">Call Vince</a>
+
+                  <p class="hint">
+                    <strong>Phone:</strong> <strong>Text</strong> opens Messages (SMS). <strong>Email</strong> opens your
+                    mail app so you can attach photos. <strong>Computer:</strong> Text only works if your OS handles
+                    <code>sms:</code> links; <strong>Email</strong> opens Gmail, Outlook, Apple Mail, etc.
+                    <strong>Call</strong> works almost everywhere. Set <code>data-phone</code> and
+                    <code>data-email</code> on <code>&lt;body&gt;</code>.
+                  </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="site-nav" aria-label="Sections on this page">
+      <div class="site-nav-inner">
+        <a href="#contact">Contact</a>
+        <a href="#walkthrough">$500 walkthrough</a>
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How I work</a>
+        <a href="#gallery">Before / after</a>
+        <a href="#area">Service area</a>
+      </div>
+    </nav>
+
+    <main>
+      <section id="walkthrough" class="section-block">
+        <div class="shell walkthrough-layout">
+          <div class="walkthrough-copy">
+            <h2>Maintenance by Vince — home walkthrough</h2>
+            <p class="lead" style="margin-bottom: 0">
+              A structured <strong>maintenance audit</strong> (not a real estate home inspection). About three hours on
+              site, digital priority report — urgent fixes, seasonal items, and plan-ahead upgrades.
+            </p>
+          </div>
+          <div class="walkthrough-card">
+            <p
+              style="margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; color: var(--accent-gold)"
+            >
+              Signature service
+            </p>
+            <p class="price">$500</p>
+            <p style="margin-top: 0">
+              Envelope check · wet zones · fire &amp; safety basics · HVAC filters &amp; safe exterior checks · written
+              priorities. Book by text or call after we talk.
+            </p>
+            <ul>
+              <li>Great way to “try how I work” before smaller repair visits.</li>
+              <li>Ask about spring &amp; fall scheduling after your first walkthrough.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section-block alt">
+        <div class="shell">
+        <h2>Service menu</h2>
+        <p class="lead">Specific work I take on — tell me what you need in the contact form above.</p>
+        <div class="service-grid">
+          <div class="service-card">
+            <h3>Exterior shine</h3>
+            <p>Driveway &amp; siding pressure washing, windows, gutter debris.</p>
+          </div>
+          <div class="service-card">
+            <h3>Small fixes</h3>
+            <p>Drywall patches, doors, cabinet hardware, fence boards.</p>
+          </div>
+          <div class="service-card">
+            <h3>Tech installs</h3>
+            <p>TV mount, smart doorbells, Wi-Fi cameras.</p>
+          </div>
+          <div class="service-card">
+            <h3>Safety checks</h3>
+            <p>Smoke/CO basics, grab bars, maintenance walkthrough items.</p>
+          </div>
+        </div>
+        <p class="lead services-footnote">
+          Many single visits fall around <strong>$150–$850</strong> depending on scope; pressure washing often starts around
+          <strong>$299</strong> — I’ll confirm on your quote.
+        </p>
+        </div>
+      </section>
+
+      <section id="how-it-works" class="section-block">
+        <div class="shell">
+        <h2>How I work</h2>
+        <p class="lead">
+          Fast replies, clear scope, no middleman — I perform the handyman work I book. Licensed-trade or permit jobs are
+          yours to hire out; I don’t broker other people’s crews.
+        </p>
+        <div class="pillars">
+          <div class="pillar">
+            <h3>Speed to lead</h3>
+            <p>Text-first. Same-day response when I can — most people hire whoever answers first.</p>
+          </div>
+          <div class="pillar">
+            <h3>Proactive option</h3>
+            <p>The walkthrough catches small issues before they become emergencies.</p>
+          </div>
+          <div class="pillar">
+            <h3>One person</h3>
+            <p>You get me on the work I take — no random subs sent to your home.</p>
+          </div>
+        </div>
+        <div class="compare-scroll">
+          <table class="compare" aria-label="How this compares">
+            <thead>
+              <tr>
+                <th scope="col">You might have seen…</th>
+                <th scope="col">Common downside</th>
+                <th scope="col">What you get here</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Solo handyman, no systems</td>
+                <td>Ghosting, vague scope.</td>
+                <td>Structured walkthrough option + written priorities.</td>
+              </tr>
+              <tr>
+                <td>Big franchise boards</td>
+                <td>Different techs every visit.</td>
+                <td>Owner-operator continuity.</td>
+              </tr>
+              <tr>
+                <td>General contractors</td>
+                <td>Small jobs wait in line.</td>
+                <td>Built for maintenance and small-job lane.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="section-block alt">
+        <div class="shell">
+        <h2>Before &amp; after</h2>
+        <p class="lead">Placeholder slider — replace gradients with your real job photos.</p>
+        <div class="slider-wrap" id="ba-slider" aria-label="Before and after comparison">
+          <div class="ph ph-before" aria-hidden="true"></div>
+          <div class="ph ph-after" id="after-layer" aria-hidden="true"></div>
+          <div class="slider-divider" id="divider"></div>
+          <div class="slider-labels"><span>Before</span><span>After</span></div>
+        </div>
+        <label for="ba-range" class="lead" style="display: block; margin-top: 0.35rem; font-size: 0.85rem"
+          ><strong>Drag</strong> to compare</label
+        >
+        <input type="range" id="ba-range" min="0" max="100" value="50" aria-label="Reveal before and after" />
+        </div>
+      </section>
+
+      <section id="area" class="section-block">
+        <div class="shell">
+        <h2>Service area</h2>
+        <p class="lead">Sacramento, Fair Oaks, and nearby — confirm your ZIP by text or call.</p>
+        <p class="lead" style="margin-bottom: 0">
+          <a href="https://www.google.com/maps/search/Sacramento,+CA/" rel="noopener noreferrer" target="_blank"
+            >Open map — Sacramento</a
+          >
+          · embed your own Google Map here when you publish.
+        </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell">
+        The Handyman Fix It — I’m Vince; <strong>I perform</strong> the small repairs &amp; maintenance I book. Not a
+        licensed contractor; projects under $1k per applicable rules.
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var PHONE = (document.body.getAttribute("data-phone") || "+19166342083").replace(/\s/g, "");
+        var telHref = "tel:" + PHONE;
+        document.getElementById("emergency-tel").href = telHref;
+        document.getElementById("header-tel").href = telHref;
+        document.getElementById("main-tel").href = telHref;
+
+        var problemEl = document.getElementById("problem");
+        var phoneEl = document.getElementById("phone");
+        var nameEl = document.getElementById("name");
+        var errEl = document.getElementById("form-err");
+        var btnText = document.getElementById("btn-text");
+        var btnEmail = document.getElementById("btn-email");
+        var EMAIL = (document.body.getAttribute("data-email") || "").replace(/\s/g, "");
+
+        function buildBody() {
+          var parts = [];
+          var name = (nameEl.value || "").trim();
+          var phone = (phoneEl.value || "").trim();
+          var problem = (problemEl.value || "").trim();
+          if (name) parts.push("Name: " + name);
+          if (phone) parts.push("Phone: " + phone);
+          if (problem) parts.push(problem);
+          return parts.join("\n\n") || "Handyman request from thehandymanfixit.com";
+        }
+
+        function validateThen(go) {
+          var problem = (problemEl.value || "").trim();
+          var phone = (phoneEl.value || "").trim();
+          if (!problem && !phone) {
+            errEl.classList.add("show");
+            return;
+          }
+          errEl.classList.remove("show");
+          go();
+        }
+
+        btnText.addEventListener("click", function () {
+          validateThen(function () {
+            window.location.href = "sms:" + PHONE + "?body=" + encodeURIComponent(buildBody());
+          });
+        });
+
+        if (!EMAIL) {
+          btnEmail.disabled = true;
+          btnEmail.textContent = "Email — set data-email on body";
+          btnEmail.style.opacity = "0.65";
+        } else {
+          btnEmail.addEventListener("click", function () {
+            validateThen(function () {
+              var subject = "Handyman request — thehandymanfixit.com";
+              var href =
+                "mailto:" +
+                EMAIL +
+                "?subject=" +
+                encodeURIComponent(subject) +
+                "&body=" +
+                encodeURIComponent(buildBody());
+              window.location.href = href;
+            });
+          });
+        }
+
+        var baRange = document.getElementById("ba-range");
+        var afterLayer = document.getElementById("after-layer");
+        var dividerEl = document.getElementById("divider");
+        if (baRange && afterLayer && dividerEl) {
+          function setBaPos(pct) {
+            var clip = "inset(0 0 0 " + pct + "%)";
+            afterLayer.style.clipPath = clip;
+            afterLayer.style.setProperty("-webkit-clip-path", clip);
+            dividerEl.style.left = pct + "%";
+          }
+          function onBaRange() {
+            setBaPos(Number(baRange.value));
+          }
+          baRange.addEventListener("input", onBaRange);
+          baRange.addEventListener("change", onBaRange);
+          setBaPos(50);
+        }
+      })();
+    </script>
+  </body>
+</html>
