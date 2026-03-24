@@ -786,9 +786,30 @@
       .err.show {
         display: block;
       }
+      .form-status {
+        display: none;
+        font-size: clamp(0.82rem, 2.3vw, 0.9rem);
+        font-weight: 700;
+        margin: 0.55rem 0 0;
+        line-height: 1.4;
+      }
+      .form-status:not([hidden]) {
+        display: block;
+      }
+      .form-status-ok {
+        color: var(--green-d);
+      }
+      .form-status-err {
+        color: var(--danger);
+      }
     </style>
   </head>
-  <body data-phone="+19166342083" data-email="VinceDang@thenetwork20.com">
+  <!-- Formspree: create a form at https://formspree.io then set data-formspree="https://formspree.io/f/yourid" -->
+  <body
+    data-phone="+19166342083"
+    data-email="VinceDang@thenetwork20.com"
+    data-formspree=""
+  >
     <div class="emergency" role="alert">
       <div class="emergency-inner">
         <p class="emergency-line1">
@@ -819,9 +840,9 @@
                 <strong>quick replies</strong>, clear scope, no runaround.
               </p>
               <p class="sub contact-sub-tight">
-                Use the form → <strong>text</strong> or <strong>email</strong> (opens Messages or Mail — or Outlook /
-                Gmail on desktop). Or <strong>call</strong>. Use the menu below for services, the $500 walkthrough, and
-                more.
+                Use the form → <strong>text</strong> or <strong>email</strong> (text opens Messages; email sends in-page if
+                Formspree is set up, otherwise your mail app). Or <strong>call</strong>. Use the menu below for services,
+                the $500 walkthrough, and more.
               </p>
             </div>
             <div class="hero-form-block">
@@ -847,12 +868,14 @@
                   <a class="btn btn-outline" id="main-tel" href="tel:+19166342083">Call Vince</a>
 
                   <p class="hint">
-                    <strong>Phone:</strong> <strong>Text</strong> opens Messages (SMS). <strong>Email</strong> opens your
-                    mail app so you can attach photos. <strong>Computer:</strong> Text only works if your OS handles
-                    <code>sms:</code> links; <strong>Email</strong> opens Gmail, Outlook, Apple Mail, etc.
-                    <strong>Call</strong> works almost everywhere. Set <code>data-phone</code> and
-                    <code>data-email</code> on <code>&lt;body&gt;</code>.
+                    <strong>Phone:</strong> <strong>Text</strong> opens Messages (SMS). <strong>Email</strong> either
+                    sends from this page (when <code>data-formspree</code> is set — no mail app needed) or opens your
+                    mail app. <strong>Computer:</strong> Text only works if your OS handles <code>sms:</code> links.
+                    <strong>Call</strong> works almost everywhere. Set <code>data-phone</code>,
+                    <code>data-email</code> (for mailto), and optionally <code>data-formspree</code> on
+                    <code>&lt;body&gt;</code>.
                   </p>
+                  <p id="form-email-status" class="form-status" hidden aria-live="polite"></p>
               </div>
             </div>
           </div>
@@ -1015,6 +1038,8 @@
         var errEl = document.getElementById("form-err");
         var btnText = document.getElementById("btn-text");
         var btnEmail = document.getElementById("btn-email");
+        var emailStatusEl = document.getElementById("form-email-status");
+        var FORMSPREE = (document.body.getAttribute("data-formspree") || "").trim();
         var EMAIL = (document.body.getAttribute("data-email") || "").replace(/\s/g, "");
 
         function buildBody() {
@@ -1045,11 +1070,60 @@
           });
         });
 
-        if (!EMAIL) {
-          btnEmail.disabled = true;
-          btnEmail.textContent = "Email — set data-email on body";
-          btnEmail.style.opacity = "0.65";
-        } else {
+        function showEmailStatus(msg, isErr) {
+          if (!emailStatusEl) return;
+          emailStatusEl.textContent = msg;
+          emailStatusEl.className =
+            "form-status" + (isErr ? " form-status-err" : " form-status-ok");
+          emailStatusEl.hidden = false;
+        }
+
+        if (FORMSPREE) {
+          btnEmail.addEventListener("click", function () {
+            validateThen(function () {
+              btnEmail.disabled = true;
+              var prevLabel = btnEmail.textContent;
+              btnEmail.textContent = "Sending…";
+              if (emailStatusEl) {
+                emailStatusEl.hidden = true;
+                emailStatusEl.textContent = "";
+              }
+              fetch(FORMSPREE, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: JSON.stringify({
+                  _subject: "Handyman request — thehandymanfixit.com",
+                  message: buildBody(),
+                  phone: (phoneEl.value || "").trim(),
+                  name: (nameEl.value || "").trim(),
+                }),
+              })
+                .then(function (r) {
+                  if (r.ok) {
+                    showEmailStatus("Sent — I’ll get back to you soon.", false);
+                    errEl.classList.remove("show");
+                  } else {
+                    return r.json().then(function (d) {
+                      throw new Error((d && d.error) || "Send failed");
+                    });
+                  }
+                })
+                .catch(function () {
+                  showEmailStatus(
+                    "Couldn’t send from this page. Try Text or Call.",
+                    true
+                  );
+                })
+                .finally(function () {
+                  btnEmail.disabled = false;
+                  btnEmail.textContent = prevLabel;
+                });
+            });
+          });
+        } else if (EMAIL) {
           btnEmail.addEventListener("click", function () {
             validateThen(function () {
               var subject = "Handyman request — thehandymanfixit.com";
@@ -1063,6 +1137,10 @@
               window.location.href = href;
             });
           });
+        } else {
+          btnEmail.disabled = true;
+          btnEmail.textContent = "Email — set data-formspree or data-email";
+          btnEmail.style.opacity = "0.65";
         }
       })();
     </script>
